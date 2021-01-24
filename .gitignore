@@ -1,0 +1,16 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+.ipynb_checkpoints/
+__pycache__/
+Banana_Windows_x86_64/
+communicator_objects/
+curricula/
+tests/
+unityagents/
+unitytrainers/
+Basics.ipynb
+learn.py
+requirements.txt
+setup.py
+trainer_config.yaml
+unity-environment.log
