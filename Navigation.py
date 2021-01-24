@@ -2,21 +2,22 @@ from unityagents import UnityEnvironment
 import numpy as np
 from collections import deque
 import matplotlib.pyplot as plt
+import torch
 
 import sys
 sys.path.insert(0, '../Value_methods')
-from agent import Agent
 from paramutils import *
+from agent import Agent
+
 import pickle as pk
 
 params=parameters()
 params.network = 'dqn'  # 'dqn, dueling_dqn'
 params.double_dqn = 'disable'  # enable, disable
-params.scores_filename ='_v0.txt'
-params.env_seed=4
+params.buffer = 'baseline'  # baseline,priority_replay
+params.op_filename_prefix ='dqn'
 
-env = UnityEnvironment(file_name="Banana_Windows_x86_64/Banana.exe")
-#env.seed(params.env_seed)
+env = UnityEnvironment(file_name="Banana_Windows_x86_64/Banana.exe",no_graphics=True)
 
 # get the default brain
 brain_name = env.brain_names[0]
@@ -72,13 +73,12 @@ for i_episode in range(1,n_episodes+1):
         print('\rEpisode {}\tAverage Score: {:.2f}'.format(i_episode, np.mean(scores_window)))
     if np.mean(scores_window) >= 13.0:
         print('\nEnvironment solved in {:d} episodes!\tAverage Score: {:.2f}'.format(i_episode - 100,np.mean(scores_window)))
+        torch.save(agent.qnetwork_local.state_dict(), params.op_filename_prefix+'_checkpoint.pth')
         break
 
     eps = max(params.eps_end, params.eps_decay * eps)  # decrease epsilon
 
 print("Score: {}".format(score))
-
 env.close()
-plt.plot(scores)
-
+pk.dump([scores, params],open(params.op_filename_prefix+'.pk','wb'))
 
