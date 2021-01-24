@@ -36,6 +36,7 @@ Apart from plain Vanilla, the following were tried.
 
 ## Performance
 Running for 2000 episodes, we get this:
+![Scores for various DQN techniques](https://github.com/kpasad/DQN_navigation/blob/main/results/results.jpeg)
 
 1. DQN hits the target score of 13, the earliest, at around 400 episodes with double DQN close on its heels
 2. Dueling DQN hits the passing score around the same number of episodes but then stumbles on without any score increment.
