@@ -6,10 +6,16 @@ This repo contains a working code for solving the Unity ML Agent called Banana C
 The agent must collect Yellow bananas in a field full of yellow and blue bananas. The agent is rewarded a score of 1 for collecting a yellow banana and penalized a score of 1 for collecting a blue banana. The agent must learn to score 13 over 100 episodes, for the task to be complete.
 
 ## The Environment and the Agent
-The environment is defined by a state vector composed of 37 variables. In response to the observed state, the agent can take an action to  move in four direction in 2-Dimensions space. 
+### The State Space
+The environment is defined by a state vector composed of 37 variables. 
 What do the element of the state indicate? No clear answers from Unity. 
 The good folks [here](https://github.com/Unity-Technologies/ml-agents/issues/1134) have figured some of it out (and have been kind enough to share, bless their hearts!). It seems that the agent looks 'around' in a visual field spanning 20 to 135 degrees in approximately 35 degree increment for total of 7 'sight rays'. If the 'sight' (a ray transmitted at one of these angles) falls on an object (Yellow Banana, Blue Banana, or a wall), then 5 attributes of the object are recorded: Binary identified for the object (YB,BB,Wall), agent, and distance to the object. I don't understand what the fourth attribute is. 
 This makes for 35 variables. The velocity in left-right and forward-backward direction adds two additional state variables for a total of 37 variables. Does it matter  what the state variables mean? Not really. Not at least to get a working solution. Read the discussion towards the end.
+
+
+
+### The Action Space
+In response to the observed state, the agent can take an action to  move in four direction in 2-Dimensions space. 
 
 ## The Solution: Q learning via a Deep Neural Network
 The primary solution is a plain vanilla DQN network, composed of three fully connected layers as follows:
