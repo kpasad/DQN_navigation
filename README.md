@@ -1,12 +1,13 @@
 
 ## Installation
-Clone this repo. 
+
 * Navigation.py is the landing script
+* Clone [this](https://github.com/kpasad/Value_methods ) repo
 * The folder Value_methods contains :
 	1. The agent (agent.py) that implements the RL agent functionalities (epsilon greedy action, learning  
 	2. Deep Q network models : DQN(dqn_model.py ) and Dueling DQN (ddqn_model.py)
 	3. Simulator helper (paramsutility.py) ; this is work in progress for a parameters manager utiity
-* Folder must be included in Navigation.py. Ensure that, in  
+* Folder,Value_methods, must be included in Navigation.py. Ensure that, in  
 		     `sys.path.insert(0, '../Value_methods')` , the path to Vaue_methods is correctly set.
 * File plotres.py is a utility to plot the results from multiple runs of Navigation.py
 
