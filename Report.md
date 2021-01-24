@@ -12,10 +12,31 @@ What do the element of the state indicate? No clear answers from Unity.
 The good folks [here](https://github.com/Unity-Technologies/ml-agents/issues/1134) have figured some of it out (and have been kind enough to share, bless their hearts!). It seems that the agent looks 'around' in a visual field spanning 20 to 135 degrees in approximately 35 degree increment for total of 7 'sight rays'. If the 'sight' (a ray transmitted at one of these angles) falls on an object (Yellow Banana, Blue Banana, or a wall), then 5 attributes of the object are recorded: Binary identified for the object (YB,BB,Wall), agent, and distance to the object. I don't understand what the fourth attribute is. 
 This makes for 35 variables. The velocity in left-right and forward-backward direction adds two additional state variables for a total of 37 variables. Does it matter  what the state variables mean? Not really. Not at least to get a working solution. Read the discussion towards the end.
 
+We can inspect the space:
+```state = env_info.vector_observations[0]```
+
+Which results in:
+
+States look like: [ 1.          0.          0.         0.         0.84408134  
+                    0.          0.         1.          0.          0.0748472   
+                    0.          1.         0.          0.         0.25755  
+                    1.         0.         0.           0.         0.74177343  
+                    0.         1.         0.         0.           0.25854847  
+                    0.         0.         1.         0.         0.09355672  
+                    0.         1.         0.         0.         0.31969345  
+                    0. 0.        ]  
+                    
+Notice how, expectedly, each row in the output contains a single True boolean corresponding to one of three obstacles that the agents sees.
+
 
 
 ### The Action Space
-In response to the observed state, the agent can take an action to  move in four direction in 2-Dimensions space. 
+In response to the observed state, the agent can take an action to  move in four direction in 2-Dimensions space. In a interactive version, the key action binding is:
+
+0 - walk forward  
+1 - walk backward  
+2 - turn left  
+3 - turn right  
 
 ## The Solution: Q learning via a Deep Neural Network
 The primary solution is a plain vanilla DQN network, composed of three fully connected layers as follows:
@@ -39,6 +60,9 @@ Apart from plain Vanilla, the following were tried.
 |3|Advantage n/w Layer 2|128|4|Linear|
 
 3. Double Dueling DQN 
+
+## Running the simulation
+Run the file Navigation.py. The simulation will terminate when one of the two condition is met: The agent gets a score of 13 or the predetermined number of episodes elapse. At the end of simulation, a pickle file is generated. The file contains a dump of parameters as the raw scores. The scores can be analyzed to create the plot below using the utility script plotres.py. The network weights are checkpointed as well.
 
 ## Performance
 Running for 2000 episodes, we get this:
