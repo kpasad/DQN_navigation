@@ -62,7 +62,15 @@ Apart from plain Vanilla, the following were tried.
 3. Double Dueling DQN 
 
 ## Running the simulation
-Run the file Navigation.py. The simulation will terminate when one of the two condition is met: The agent gets a score of 13 or the predetermined number of episodes elapse. At the end of simulation, a pickle file is generated. The file contains a dump of parameters as the raw scores. The scores can be analyzed to create the plot below using the utility script plotres.py. The network weights are checkpointed as well.
+Run the file Navigation.py. The simulation will terminate when one of the two condition is met: The agent gets a score of 13 or the predetermined number of episodes elapse. At the end of simulation, a pickle file is generated. The file contains a dump of parameters as the raw scores. The scores can be analyzed to create the plot below using the utility script plotres.py. The network weights are checkpointed as well.  
+By default, the script turn off the rendering. To visually inspect the agent being trained, turn on rendering by changing 
+```
+env = UnityEnvironment(file_name="Banana_Windows_x86_64/Banana.exe",no_graphics=True)
+```
+to
+```
+env = UnityEnvironment(file_name="Banana_Windows_x86_64/Banana.exe")
+```
 
 ## Performance
 Running for 2000 episodes, we get this:
