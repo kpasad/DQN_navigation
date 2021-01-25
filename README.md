@@ -1,6 +1,9 @@
 
 # Unity-ML Banana Collector agent
-See Report.md for description
+The banana collection environment from Unitiy-ML is an emulation of an agent tasked with collecitng yellow bananas in a two dimensional enclosed space. The agent 'sees' the objects around it and can move in four directions. When it spots a yellow banana, it must take actions to move towards the banana. No action is needed to grab the banana. It must avoid any blue bananas. The emulation looks like this:  
+![Unity-ML Banana Collector Agent in action](https://github.com/kpasad/DQN_navigation/blob/main/adjunct/trained-agent.gif)
+
+See Report.md for detailed description
 
 ## Installation
 
