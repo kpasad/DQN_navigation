@@ -1,4 +1,7 @@
 
+# Unity-ML Banana Collector agent
+See Report.md for description
+
 ## Installation
 
 * Navigation.py is the landing script
@@ -24,5 +27,6 @@
 * By default, the script ends when a score of 13 is met.
 * Two files are generated:
 	* The pickle file may be analyzed via the plotres.py utility
+	* Checkpoint of the NN model.
 ## Baseline results
 The default parameter/results are located in the folder '/results'. They can be analyzed with the plotres.py utility.
